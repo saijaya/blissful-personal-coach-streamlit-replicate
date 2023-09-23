@@ -1,15 +1,18 @@
+import os
 import streamlit as st
 import replicate
-import os
 import pandas
 
-#st.title('blissful 🎈')
-
 # App title
-st.set_page_config(page_title="🦙💬 Llama 2 Chatbot: blissful 🎈")
+st.set_page_config(page_title="blissful 🎈: Powered by 🦙💬 Llama 2 Chatbot")
 
 with st.sidebar:
-    st.title('🦙💬 Llama 2 Chatbot')
+    st.title('blissful 🎈: Powered by 🦙💬 Llama 2 Chatbot')
+    
+    """
+    Replicate API creds
+    """
+    # If replicate API token already provided
     if 'REPLICATE_API_TOKEN' in st.secrets:
         st.success('API key already provided!', icon='✅')
         replicate_api = st.secrets['REPLICATE_API_TOKEN']
