@@ -10,7 +10,7 @@ with st.sidebar:
     st.title('blissful 🎈: Powered by 🦙💬 Llama 2 Chatbot')
 
     """
-    Replicate API creds
+    Replicate API creds test
     """
     # If replicate API token already provided
     if 'REPLICATE_API_TOKEN' in st.secrets:
@@ -25,7 +25,7 @@ with st.sidebar:
     os.environ['REPLICATE_API_TOKEN'] = replicate_api
 
     """
-    Models and parameters
+    Models and parameters lol
     """
     st.subheader('Models and parameters')
     selected_model = st.sidebar.selectbox('Choose a Llama2 model', ['Llama2-7B', 'Llama2-13B'], key='selected_model')
