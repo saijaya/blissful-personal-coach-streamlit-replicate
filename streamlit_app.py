@@ -4,10 +4,10 @@ import replicate
 import pandas
 
 # App title
-st.set_page_config(page_title="blissful 🎈: Powered by 🦙💬 Llama 2 Chatbot")
+st.set_page_config(page_title="blissful 🎈: Your friendly personal llama 🦙💬")
 
 with st.sidebar:
-    st.title('blissful 🎈: Powered by 🦙💬 Llama 2 Chatbot')
+    st.title('blissful 🎈: Your friendly personal llama 🦙💬')
 
     # If replicate API token already provided
     if 'REPLICATE_API_TOKEN' in st.secrets:
@@ -70,3 +70,17 @@ if prompt := st.chat_input(disabled=not replicate_api):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.write(prompt)
+
+# Generate a new response if last message is not from assistant
+if st.session_state.messages[-1]["role"] != "assistant":
+    with st.chat_message("assistant"):
+        with st.spinner("Thinking..."):
+            response = generate_llama2_response(prompt)
+            placeholder = st.empty()
+            full_response = ''
+            for item in response:
+                full_response += item
+                placeholder.markdown(full_response)
+            placeholder.markdown(full_response)
+    message = {"role": "assistant", "content": full_response}
+    st.session_state.messages.append(message)
